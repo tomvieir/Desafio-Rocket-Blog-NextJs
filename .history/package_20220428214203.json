@@ -8,7 +8,6 @@
     "start": "next start",
     "test": "jest --watchAll",
     "coverage": "jest --coverage"
-    
   },
   "dependencies": {
     "@prismicio/client": "^6.4.3",
