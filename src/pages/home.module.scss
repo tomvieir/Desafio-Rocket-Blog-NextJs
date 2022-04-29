@@ -21,7 +21,11 @@
 
         strong {
             font-size: 1.75rem;
-            color: var(--heading-color);   
+            color: var(--heading-color); 
+            transition: color .2s ;
+            &:hover {
+                color: var(--highlight-color);
+            }  
         }
 
         h4 {
@@ -46,5 +50,8 @@
                 align-items: center;
             }
         }
+
+        
     }
+    
 }

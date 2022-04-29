@@ -35,7 +35,7 @@ export default function Home() {
 
       <main className={styles.container}>
         <div className={styles.posts}>
-          <Link href='#'> 
+          <Link href='/post/slug'> 
             <a>
               <strong>Como utilizar hooks</strong>
               <h4>pensando em sincronização em vez de ciclos de vida </h4>
@@ -189,7 +189,7 @@ export default function Home() {
               
             </a>
           </Link>
-          
+
 
         </div>
       </main>
