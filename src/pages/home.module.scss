@@ -1,1 +1,48 @@
 // TODO
+.container {
+    max-width: 700px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+}
+
+.posts {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    a {
+        width: 100%;
+        color: var(--info-color);
+        margin-bottom: 2rem;
+
+        strong {
+            font-size: 1.75rem;
+            color: var(--heading-color);   
+        }
+
+        h4 {
+            font-size: 1.25rem;
+            font-weight: 100;           
+        }
+
+        .dateSession {
+            display: inline-flex;
+            margin-top: 1rem;
+            font-weight: 100;
+            font-size: 1rem;
+            
+            time {
+                margin-right: 1rem;
+                display: flex;
+                align-items: center;
+            }
+
+            p {
+                display: flex;
+                align-items: center;
+            }
+        }
+    }
+}

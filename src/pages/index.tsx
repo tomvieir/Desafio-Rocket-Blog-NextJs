@@ -1,6 +1,7 @@
 import { GetStaticProps } from 'next';
-import Head from 'next/head';
 import Link from 'next/link';
+import {MdDateRange} from 'react-icons/md';
+import {RiUser3Line} from 'react-icons/ri';
 
 import { getPrismicClient } from '../services/prismic';
 
@@ -30,31 +31,166 @@ export default function Home() {
   // TODO
   return(
     <>
-      <Head>
-        <title>Space Travel</title>
-      </Head>
+
 
       <main className={styles.container}>
         <div className={styles.posts}>
-          <Link href='#'>
+          <Link href='#'> 
             <a>
-              <strong>Titulo do post</strong>
-              <h4>Subtitulo do post</h4>
-              <div>
+              <strong>Como utilizar hooks</strong>
+              <h4>pensando em sincronização em vez de ciclos de vida </h4>
+              <div className={styles.dateSession}>
 
                 <time>
-                   <img></img>
-                    12/02/2020
+                <MdDateRange/>
+                    15 mar 2022
                 </time>
 
                 <p className={styles.author}>
-                   <img></img>
+                  <RiUser3Line/>
                    Tom barbosa
                 </p>
               </div>
               
             </a>
           </Link>
+
+          <Link href='#'> 
+            <a>
+              <strong>Como utilizar hooks</strong>
+              <h4>pensando em sincronização em vez de ciclos de vida </h4>
+              <div className={styles.dateSession}>
+
+                <time>
+                <MdDateRange/>
+                    15 mar 2022
+                </time>
+
+                <p className={styles.author}>
+                  <RiUser3Line/>
+                   Tom barbosa
+                </p>
+              </div>
+              
+            </a>
+          </Link>
+
+          <Link href='#'> 
+            <a>
+              <strong>Como utilizar hooks</strong>
+              <h4>pensando em sincronização em vez de ciclos de vida </h4>
+              <div className={styles.dateSession}>
+
+                <time>
+                <MdDateRange/>
+                    15 mar 2022
+                </time>
+
+                <p className={styles.author}>
+                  <RiUser3Line/>
+                   Tom barbosa
+                </p>
+              </div>
+              
+            </a>
+          </Link>
+          <Link href='#'> 
+            <a>
+              <strong>Como utilizar hooks</strong>
+              <h4>pensando em sincronização em vez de ciclos de vida </h4>
+              <div className={styles.dateSession}>
+
+                <time>
+                <MdDateRange/>
+                    15 mar 2022
+                </time>
+
+                <p className={styles.author}>
+                  <RiUser3Line/>
+                   Tom barbosa
+                </p>
+              </div>
+              
+            </a>
+          </Link>
+          <Link href='#'> 
+            <a>
+              <strong>Como utilizar hooks</strong>
+              <h4>pensando em sincronização em vez de ciclos de vida </h4>
+              <div className={styles.dateSession}>
+
+                <time>
+                <MdDateRange/>
+                    15 mar 2022
+                </time>
+
+                <p className={styles.author}>
+                  <RiUser3Line/>
+                   Tom barbosa
+                </p>
+              </div>
+              
+            </a>
+          </Link>
+          <Link href='#'> 
+            <a>
+              <strong>Como utilizar hooks</strong>
+              <h4>pensando em sincronização em vez de ciclos de vida </h4>
+              <div className={styles.dateSession}>
+
+                <time>
+                <MdDateRange/>
+                    15 mar 2022
+                </time>
+
+                <p className={styles.author}>
+                  <RiUser3Line/>
+                   Tom barbosa
+                </p>
+              </div>
+              
+            </a>
+          </Link>
+          <Link href='#'> 
+            <a>
+              <strong>Como utilizar hooks</strong>
+              <h4>pensando em sincronização em vez de ciclos de vida </h4>
+              <div className={styles.dateSession}>
+
+                <time>
+                <MdDateRange/>
+                    15 mar 2022
+                </time>
+
+                <p className={styles.author}>
+                  <RiUser3Line/>
+                   Tom barbosa
+                </p>
+              </div>
+              
+            </a>
+          </Link>
+          <Link href='#'> 
+            <a>
+              <strong>Como utilizar hooks</strong>
+              <h4>pensando em sincronização em vez de ciclos de vida </h4>
+              <div className={styles.dateSession}>
+
+                <time>
+                <MdDateRange/>
+                    15 mar 2022
+                </time>
+
+                <p className={styles.author}>
+                  <RiUser3Line/>
+                   Tom barbosa
+                </p>
+              </div>
+              
+            </a>
+          </Link>
+          
+
         </div>
       </main>
 
