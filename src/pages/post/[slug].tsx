@@ -1,6 +1,8 @@
 import { GetStaticPaths, GetStaticProps } from 'next';
+import { RichText } from 'prismic-dom';
 import { MdDateRange, MdOutlineWatchLater } from 'react-icons/md';
 import { RiUser3Line } from 'react-icons/ri';
+import Prismic from '@prismicio/client';
 
 import { getPrismicClient } from '../../services/prismic';
 import styles from './post.module.scss';
@@ -26,8 +28,9 @@ interface PostProps {
   post: Post;
 }
 
-export default function Post() {
+export default function Post( { post }: PostProps ) {
   // TODO
+  
   return (
     <>
       <main className={styles.container}>
@@ -40,7 +43,7 @@ export default function Post() {
 
           <div className={styles.content}>
             <div className={styles.head}>
-              <h1>titulo do post</h1>
+              <h1>titulo</h1>
               <div className={styles.infoArea}>
                 <time className={styles.date}>
                   <MdDateRange />
@@ -98,16 +101,50 @@ export default function Post() {
   )
 }
 
-// export const getStaticPaths = async () => {
+// export const getStaticPaths: GetStaticPaths = async () => {
+
 //   const prismic = getPrismicClient({});
-//   const posts = await prismic.getByType(TODO);
+//   const posts = await prismic.query([
+//     Prismic.predicates.at('document.type', 'my-custom-post'),
+  
+//   ])
 
 //   // TODO
+//   return {
+//     paths: posts.results.map(post => ({
+//       params: {
+//         id: post.id
+//       }
+//     })),
+//     fallback: true
+//   }
 // };
 
-// export const getStaticProps = async ({params }) => {
+
+
+// export const getStaticProps: GetStaticProps = async ({ params }) => {
 //   const prismic = getPrismicClient({});
-//   const response = await prismic.getByUID(TODO);
+//   const { slug } = params
+//   const response = await prismic.getByUID('my-custom-post', String(slug),{
+  
+//   });
 
 //   // TODO
+
+//   const post = {
+//     slug,
+//     title: RichText.asText(response.data.title),
+//     content: RichText.asHtml(response.data.content),
+//     author: response.data.author.find((author: { type: string; }) => author.type === 'paragraph')?.text ?? '',
+//     banner: response.data.banner,
+//     // updatedAt:, // falta ver
+
+//   }
+//   console.log(response)
+//   return { 
+//     props: {
+//       post,
+//     },
+
+//   }
 // };

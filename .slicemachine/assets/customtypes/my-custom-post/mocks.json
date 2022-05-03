@@ -1,0 +1,67 @@
+{
+  "id": "6e6ec16f-5708-4443-8ad0-2c31c84edca8",
+  "uid": "voluptatem-in-molestiae",
+  "type": "my-custom-post",
+  "data": {
+    "banner": {
+      "dimensions": {
+        "width": 900,
+        "height": 500
+      },
+      "alt": "Placeholder image",
+      "copyright": null,
+      "url": "https://images.unsplash.com/photo-1560457079-9a6532ccb118?w=900&h=500&fit=crop"
+    },
+    "title": "whiteboard next-generation niches",
+    "subtitle": "scale extensible e-markets",
+    "author": [
+      {
+        "type": "paragraph",
+        "text": "Non dolor amet irure est velit consectetur voluptate deserunt dolore tempor do nisi. Nisi magna sint qui.",
+        "spans": []
+      }
+    ],
+    "content": [
+      {
+        "heading": "embrace scalable initiatives",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Laboris anim laborum et est excepteur et aliqua reprehenderit qui elit officia est sunt veniam. Non excepteur amet mollit anim proident adipisicing qui incididunt laboris. Qui pariatur cillum minim nisi reprehenderit labore dolor magna laboris velit ea exercitation incididunt.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "evolve plug-and-play synergies",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Proident velit duis proident. Ex exercitation ut amet pariatur enim enim sit ea voluptate nisi in ex consequat. Nisi labore nostrud irure amet ad irure magna pariatur.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "drive scalable synergies",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Magna Lorem eu do minim nisi anim eu officia exercitation officia ullamco est amet. Nostrud cillum ex ut sunt nostrud dolore proident sint dolore dolor nostrud.",
+            "spans": []
+          }
+        ]
+      },
+      {
+        "heading": "benchmark efficient synergies",
+        "body": [
+          {
+            "type": "paragraph",
+            "text": "Consectetur do esse sint irure sunt laborum. Anim duis fugiat occaecat amet excepteur dolore velit id velit irure magna ullamco tempor culpa.",
+            "spans": []
+          }
+        ]
+      }
+    ]
+  }
+}

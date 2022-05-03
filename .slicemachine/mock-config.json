@@ -1,0 +1,20 @@
+{
+  "_cts": {
+    "my-custom-post": {
+      "author": {
+        "config": {
+          "patternType": "PARAGRAPH",
+          "blocks": 1
+        }
+      },
+      "content": {
+        "body": {
+          "config": {
+            "patternType": "PARAGRAPH",
+            "blocks": 1
+          }
+        }
+      }
+    }
+  }
+}
