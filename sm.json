@@ -1,0 +1,7 @@
+{
+    "_latest": "0.3.6",
+    "apiEndpoint": "https://rocket-blog-desafio.prismic.io/api/v2",
+    "libraries": [
+      "@/slices"
+    ]
+  }
