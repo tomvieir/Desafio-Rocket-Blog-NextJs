@@ -8,9 +8,10 @@ import { getPrismicClient } from '../../services/prismic';
 import styles from './post.module.scss';
 
 interface Post {
-  first_publication_date: string | null;
+  updatedAt: string;
   data: {
     title: string;
+    subtitle: string;
     banner: {
       url: string;
     };
@@ -25,34 +26,34 @@ interface Post {
 }
 
 interface PostProps {
-  post: Post;
+  posts: Post;
 }
 
-export default function Post( { post }: PostProps ) {
+export default function Post({ posts }: PostProps) {
   // TODO
-  
+
   return (
     <>
       <main className={styles.container}>
         <div className={styles.post}>
           <div className={styles.banner}>
-            <img src='https://images.unsplash.com/photo-1561736778-92e52a7769ef?ixlib=rb-1.2.1&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80' alt='banner'/>
+            <img src={posts.data.banner.url} alt='banner' />
           </div>
 
-          
+
 
           <div className={styles.content}>
             <div className={styles.head}>
-              <h1>titulo</h1>
+              <h1>{posts.data.title}</h1>
               <div className={styles.infoArea}>
                 <time className={styles.date}>
                   <MdDateRange />
-                  22 mar 2022
+                  {posts.updatedAt}
                 </time>
 
                 <p className={styles.author}>
                   <RiUser3Line />
-                  Tom Barbosa
+                  {posts.data.author}
                 </p>
 
                 <time className={styles.readTime}>
@@ -61,38 +62,19 @@ export default function Post( { post }: PostProps ) {
                 </time>
               </div>
             </div>
-            
-
-            <div className={styles.contentA}>
-              <h2>subtitulo grupo A</h2>
-              <p>
-                Lorem ipsum dolor sit, amet consectetur adipisicing elit. Aperiam expedita neque voluptatibus corrupti harum optio, ea alias nemo natus necessitatibus omnis recusandae voluptas ad, qui architecto deserunt obcaecati animi vitae!
-              </p>
-              
-            </div>
-
-            <div className={styles.contentB}>
-              <h2>subtitulo grupo B</h2>
-              <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
 
 
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit. Saepe, ducimus assumenda pariatur quam nisi ea velit eius repudiandae eos impedit fugiat perspiciatis beatae quos! Harum itaque distinctio temporibus eaque sequi.
-              </p>
-            </div>
+            {posts.data.content.map(content => {
+              return (
+                <article className={styles.contentA}>
+                  <h2>{ content.heading}</h2>
+                  <p>
+                    {RichText.asText(content.body)}
+                  </p>
 
+               </article>
+              )
+            })}
 
           </div>
         </div>
@@ -101,50 +83,58 @@ export default function Post( { post }: PostProps ) {
   )
 }
 
-// export const getStaticPaths: GetStaticPaths = async () => {
+export const getStaticPaths: GetStaticPaths = async () => {
 
-//   const prismic = getPrismicClient({});
-//   const posts = await prismic.query([
-//     Prismic.predicates.at('document.type', 'my-custom-post'),
-  
-//   ])
+  return {
+    paths: [],
+    fallback: 'blocking'
+  }
 
-//   // TODO
-//   return {
-//     paths: posts.results.map(post => ({
-//       params: {
-//         id: post.id
-//       }
-//     })),
-//     fallback: true
-//   }
-// };
+}
+
+export const getStaticProps: GetStaticProps = async ({ params }) => {
+  const { slug } = params
+  const prismic = getPrismicClient({})
+  const response = await prismic.getByUID('my-custom-post', String(slug),)
 
 
 
-// export const getStaticProps: GetStaticProps = async ({ params }) => {
-//   const prismic = getPrismicClient({});
-//   const { slug } = params
-//   const response = await prismic.getByUID('my-custom-post', String(slug),{
-  
-//   });
 
-//   // TODO
+  const posts = {
+    slug,
+    updatedAt: new Date(response.last_publication_date).toLocaleDateString('pt-BR', {
+      day: '2-digit',
+      month: 'long',
+      year: 'numeric'
+    }),
 
-//   const post = {
-//     slug,
-//     title: RichText.asText(response.data.title),
-//     content: RichText.asHtml(response.data.content),
-//     author: response.data.author.find((author: { type: string; }) => author.type === 'paragraph')?.text ?? '',
-//     banner: response.data.banner,
-//     // updatedAt:, // falta ver
+    data: {
 
-//   }
-//   console.log(response)
-//   return { 
-//     props: {
-//       post,
-//     },
+      title: response.data.title,
+      subtitle: response.data.subtitle,
+      author: RichText.asText(response.data.author),
+      banner: {
+        url: response.data.banner.url,
+      },
+      content: response.data.content.map(content => {
+        return {
+          heading: content.heading,
+          body: [...content.body],
+        };
+      }),
+    },
+  };
 
-//   }
-// };
+
+  console.log(posts);
+
+  return {
+    props: {
+      posts
+    }
+  }
+
+
+
+}
+
