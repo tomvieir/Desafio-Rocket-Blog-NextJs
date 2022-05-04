@@ -104,7 +104,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     slug,
     updatedAt: new Date(response.last_publication_date).toLocaleDateString('pt-BR', {
       day: '2-digit',
-      month: 'long',
+      month: 'numeric',
       year: 'numeric'
     }),
 
