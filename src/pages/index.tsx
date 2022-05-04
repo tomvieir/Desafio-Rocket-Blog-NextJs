@@ -41,7 +41,7 @@ export default function Home({ posts }: HomeProps){
         <div className={styles.posts}>
           
         {posts.map(post => (
-            <Link href={`posts/${post.slug}`} key={post.slug} >
+            <Link href={`post/${post.slug}`} key={post.slug} >
             <a>
               <strong>{post.title}</strong>
               <h4>{post.subtitle} </h4>
@@ -84,26 +84,20 @@ export const getStaticProps: GetStaticProps = async () => {
       title: post.data.title,
       subtitle: post.data.subtitle,
       author: RichText.asText(post.data.author),
-      // content: post.data.content.map(content => {
-      //   return {
-      //     heading: content.heading,
-      //     body: [...content.body],
-      //   };
-      // }),
       
       updatedAt: new Date(post.last_publication_date).toLocaleDateString('pt-BR', { 
         day: '2-digit',
         month: 'long',
         year:'numeric'
-    })
+      })
       
       
 
     }
   })
 
-  console.log(JSON.stringify(response, null, 2));
-  console.log(posts)
+  // console.log(JSON.stringify(response, null, 2));
+  // console.log(posts)
   
   return {
     props: {
