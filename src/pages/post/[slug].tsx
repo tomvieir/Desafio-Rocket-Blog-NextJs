@@ -2,8 +2,6 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { RichText } from 'prismic-dom';
 import { MdDateRange, MdOutlineWatchLater } from 'react-icons/md';
 import { RiUser3Line } from 'react-icons/ri';
-import Prismic from '@prismicio/client';
-
 import { getPrismicClient } from '../../services/prismic';
 import styles from './post.module.scss';
 
@@ -30,7 +28,17 @@ interface PostProps {
 }
 
 export default function Post({ posts }: PostProps) {
-  // TODO
+  
+  const totalWords = posts.data.content.reduce((total, contentItem) => {
+    total = 0
+
+    const words = contentItem.body.map(i => i.text.split(' ').length);
+    words.map(word => (total += word));
+    return total;
+  }, 0);
+
+  const readTime = Math.ceil(totalWords / 200);
+
 
   return (
     <>
@@ -39,8 +47,6 @@ export default function Post({ posts }: PostProps) {
           <div className={styles.banner}>
             <img src={posts.data.banner.url} alt='banner' />
           </div>
-
-
 
           <div className={styles.content}>
             <div className={styles.head}>
@@ -58,11 +64,10 @@ export default function Post({ posts }: PostProps) {
 
                 <time className={styles.readTime}>
                   <MdOutlineWatchLater />
-                  4 min
+                  {`${readTime} min`}
                 </time>
               </div>
             </div>
-
 
             {posts.data.content.map(content => {
               return (
@@ -71,11 +76,9 @@ export default function Post({ posts }: PostProps) {
                   <p>
                     {RichText.asText(content.body)}
                   </p>
-
                 </article>
               )
             })}
-
           </div>
         </div>
       </main>
@@ -84,23 +87,20 @@ export default function Post({ posts }: PostProps) {
 }
 
 export const getStaticPaths: GetStaticPaths = async () => {
-
   return {
     paths: [],
     fallback: 'blocking'
   }
-
 }
 
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params
   const prismic = getPrismicClient({})
-  const response = await prismic.getByUID('my-custom-post', String(slug),
+  const response = await prismic.getByUID(
+    'my-custom-post',
+     String(slug),
   )
-
-
-
-
+  
   const posts = {
     slug,
     updatedAt: new Date(response.last_publication_date).toLocaleDateString('pt-BR', {
@@ -110,7 +110,6 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     }),
 
     data: {
-
       title: response.data.title,
       subtitle: response.data.subtitle,
       author: RichText.asText(response.data.author),
@@ -126,16 +125,10 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   };
 
-
-  console.log(posts.data.banner.url);
-
   return {
     props: {
       posts
     }
   }
-
-
-
 }
 
