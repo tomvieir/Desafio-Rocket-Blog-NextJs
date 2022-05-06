@@ -73,9 +73,9 @@ export default function Post({ posts }: PostProps) {
               return (
                 <article className={styles.contentA}>
                   <h2>{content.heading}</h2>
-                  <p>
-                    {RichText.asText(content.body)}
-                  </p>
+                  <div className={styles.postBody} dangerouslySetInnerHTML={{
+                    __html: RichText.asHtml(content.body),
+                  }}/>
                 </article>
               )
             })}
