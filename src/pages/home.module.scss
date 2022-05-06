@@ -14,6 +14,15 @@
     justify-content: center;
     margin-top: 7rem;
 
+    .morePosts {
+        display: flex;
+        justify-content: center;
+        margin-top: 2rem;
+        color: var(--highlight-color);
+        font-size: 1rem;
+        cursor: pointer;
+    }
+
     a {
         width: 100%;
         color: var(--info-color);
@@ -46,6 +55,12 @@
             }
 
             p {
+                display: flex;
+                align-items: center;
+            }
+
+            .readTime {
+                margin-left: 1rem;
                 display: flex;
                 align-items: center;
             }
