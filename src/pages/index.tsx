@@ -7,12 +7,11 @@ import { getPrismicClient } from '../services/prismic';
 import styles from './home.module.scss';
 import { RichText } from 'prismic-dom';
 import { ReactElement, useState } from 'react';
-import { format } from 'date-fns';
-import ptBR from 'date-fns/locale/pt-BR';
+
 
 interface Post {
   uid?: string;
-  first_publication_date: string | null;
+  updatedAt: string | null;
   data: {
     title: string;
     subtitle: string;
@@ -60,7 +59,11 @@ export default function Home({ postsPagination }: HomeProps): ReactElement {
         ...post.data,
         readTime,
       },
-      first_publication_date: post.first_publication_date
+      updatedAt: new Date(post.updatedAt).toLocaleDateString('pt-BR', {
+        day: '2-digit',
+        month: 'long',
+        year: 'numeric'
+      }),
     };
   });
 
@@ -90,13 +93,11 @@ export default function Home({ postsPagination }: HomeProps): ReactElement {
 
       return {
         uid: post.uid,
-        first_publication_date: format(
-          new Date(post.first_publication_date),
-          'dd MMM yyyy',
-          {
-            locale: ptBR,
-          }
-        ),
+        updatedAt: new Date(post.updatedAt).toLocaleDateString('pt-BR', {
+          day: '2-digit',
+          month: 'numeric',
+          year: 'numeric'
+        }),
         data: {
           title: post.data.title,
           subtitle: post.data.subtitle,
@@ -123,7 +124,7 @@ export default function Home({ postsPagination }: HomeProps): ReactElement {
 
                   <time>
                     <MdDateRange />
-                    {post.first_publication_date}
+                    {post.updatedAt}
                   </time>
 
                   <p className={styles.author}>
@@ -133,7 +134,7 @@ export default function Home({ postsPagination }: HomeProps): ReactElement {
 
                   <time className={styles.readTime}>
                     <MdOutlineWatchLater />
-                    {post.data.readTime} min
+                    {post.data.readTime} min de leitura
                   </time>
                 </div>
 
@@ -158,7 +159,7 @@ export const getStaticProps: GetStaticProps = async () => {
   const prismic = getPrismicClient({})
   const response = await prismic.getByType('my-custom-post', { // tipo do post
 
-    pageSize: 7, // quantidade de posts
+    pageSize: 4, // quantidade de posts
 
   })
 
