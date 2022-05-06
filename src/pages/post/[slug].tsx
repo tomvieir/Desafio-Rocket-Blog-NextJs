@@ -8,7 +8,7 @@ import { getPrismicClient } from '../../services/prismic';
 import styles from './post.module.scss';
 
 interface Post {
-  updatedAt: string;
+  updatedAt: string | null;
   data: {
     title: string;
     subtitle: string;
@@ -67,12 +67,12 @@ export default function Post({ posts }: PostProps) {
             {posts.data.content.map(content => {
               return (
                 <article className={styles.contentA}>
-                  <h2>{ content.heading}</h2>
+                  <h2>{content.heading}</h2>
                   <p>
                     {RichText.asText(content.body)}
                   </p>
 
-               </article>
+                </article>
               )
             })}
 
@@ -95,7 +95,8 @@ export const getStaticPaths: GetStaticPaths = async () => {
 export const getStaticProps: GetStaticProps = async ({ params }) => {
   const { slug } = params
   const prismic = getPrismicClient({})
-  const response = await prismic.getByUID('my-custom-post', String(slug),)
+  const response = await prismic.getByUID('my-custom-post', String(slug),
+  )
 
 
 
@@ -116,7 +117,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       banner: {
         url: response.data.banner.url,
       },
-      content: response.data.content.map(content => {
+      content: response.data.content.map((content: { heading: any; body: any; }) => {
         return {
           heading: content.heading,
           body: [...content.body],
@@ -126,7 +127,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
   };
 
 
-  console.log(posts);
+  console.log(posts.data.banner.url);
 
   return {
     props: {
